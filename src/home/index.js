@@ -50,23 +50,18 @@ document.addEventListener("keydown",e=>{
 // ================= MOBILE MENU =================
 
 const menuToggle = document.getElementById("menu-toggle");
-const allNavLinks = document.querySelectorAll("nav a");
+const navLinks = document.getElementById("nav-links");
 
-menuToggle.addEventListener("click", ()=>{
-
+menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
-
 });
 
-document.querySelectorAll(".nav-links a").forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
         navLinks.classList.remove("active");
-
     });
-
 });
+
 // ================= COUNTERS =================
 
 const counters = document.querySelectorAll(".counter");
@@ -170,37 +165,33 @@ observer.observe(el);
 
 });
 
-// ================= ACTIVE NAV =================
+// ================= ACTIVE NAV ================
 
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section");
+const navLinksItems = document.querySelectorAll("nav a");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-let current="";
+    let current = "";
 
-sections.forEach(section=>{
+    sections.forEach(section => {
 
-const sectionTop=section.offsetTop-150;
+        const sectionTop = section.offsetTop - 150;
 
-if(pageYOffset>=sectionTop){
+        if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+        }
 
-current=section.getAttribute("id");
+    });
 
-}
+    navLinksItems.forEach(link => {
 
-});
+        link.classList.remove("active");
 
-navLinks.forEach(link=>{
+        if (link.getAttribute("href") == "#" + current) {
+            link.classList.add("active");
+        }
 
-link.classList.remove("active");
-
-if(link.getAttribute("href")=="#"+current){
-
-link.classList.add("active");
-
-}
-
-});
+    });
 
 });
