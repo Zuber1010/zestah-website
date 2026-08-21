@@ -1,9 +1,12 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #ffffff;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: transparent;
     color: #111;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body.lightbox-open {
+    overflow: hidden;
 }
 
 *,
@@ -25,6 +28,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: 100px;
 }
 
 nav h1 {
@@ -33,9 +37,13 @@ nav h1 {
     letter-spacing: 2px;
 }
 
-nav div {
+.nav-links {
     display: flex;
     gap: 40px;
+}
+
+.logo-link {
+    line-height: 0;
 }
 
 nav a {
@@ -117,6 +125,10 @@ html {
     font-weight: bold;
     border-radius: 5px;
     transition: .4s;
+}
+
+button {
+    font: inherit;
 }
 
 .btn:hover {
@@ -235,6 +247,9 @@ footer {
 .hero-content {
     max-width: 550px;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .artist-image {
@@ -410,7 +425,7 @@ footer {
     }
 
     nav {
-        flex-direction: column;
+        flex-direction: row;
         gap: 20px;
         padding: 20px;
     }
@@ -500,6 +515,17 @@ footer {
     box-shadow: 0 1px 1px rgba(212, 175, 55, .3);
 }
 
+.stream-card-disabled {
+    cursor: default;
+    opacity: .72;
+}
+
+.stream-card-disabled:hover {
+    transform: none;
+    border-color: rgba(212, 175, 55, .15);
+    box-shadow: none;
+}
+
 .stream-card {
     font-size: 55px;
 }
@@ -508,6 +534,14 @@ footer {
     margin-top: 20px;
     font-size: 24px;
     color: #d4af37;
+}
+
+.stream-card span {
+    display: block;
+    margin-top: 12px;
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 
 /* ================= GALLERY ================= */
@@ -611,7 +645,6 @@ footer {
     display: flex;
     gap: 25px;
     margin-top: 35px;
-
 }
 
 .social-links a {
@@ -684,6 +717,9 @@ footer {
     color: white;
 
     cursor: pointer;
+    border: 0;
+    background: transparent;
+    line-height: 1;
 
     transition: .3s;
 
@@ -720,6 +756,44 @@ footer {
     font-size: 35px;
     color: white;
     cursor: pointer;
+    border: 0;
+    background: transparent;
+    padding: 4px 8px;
+
+}
+
+.menu-close {
+
+    display: none;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    padding: 4px 8px;
+
+}
+
+:focus-visible {
+    outline: 3px solid #d4af37;
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .hidden {
+        opacity: 1;
+        transform: none;
+    }
 
 }
 
@@ -733,6 +807,18 @@ footer {
 @media(max-width:768px) {
 
     .menu-toggle {
+
+        display: block;
+
+    }
+
+    .menu-toggle.active {
+
+        display: none;
+
+    }
+
+    .menu-close.active {
 
         display: block;
 
